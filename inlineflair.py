@@ -26,6 +26,10 @@ Y = ('[y](#f/byu)', '[y](#f/yale)')
 
 
 def flairgen(texty):
+    """Convert letters in string to inline flair codes - regular mode.
+    Input string -> converts as list -> output string
+    Iterates through tuples of flair values sorted by letter, assigning
+    the correct logo code to each respective letter in a submitted string."""
     texty = texty.upper()
     texty = texty.replace('. ', '.').replace('N\'', '_').replace('BU', '\\').replace('SC', '\b').replace('OU', ']').replace('AF', '}').replace(
         'TT', '[').replace('JU', '~').replace('GS', '`').replace('BIG', '>').replace('SEC', "\a").replace('UK', "{").replace(
@@ -190,6 +194,10 @@ def flairgen(texty):
 
 
 def flairgen_safe(texty):
+    """Convert letters in string to inline flair codes - safe mode.
+    Input string -> converts as list -> output string
+    !!Safe mode uses fewer, safer flairs and chooses codes randomly by letter.
+    !!Not recommeded unless regular mode is out of date"""
     texty = texty.replace('. ', '.').replace('! ', "!").replace('? ', "?")
     texty = list(texty.upper())
     s = 0

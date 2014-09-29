@@ -2,11 +2,14 @@ import urllib
 import re
 import time
 
-# Updates flair values each day using an infinite loop and time.sleep()
-# Can also be used sans loop with cron or another scheduler
+# Updates flair values each day using an infinite loop and time.sleep().
+# Can also be used sans loop & time module with cron or another scheduler.
+# ^Do this if using a platform that charges for ongoing background jobs.
+
+# Note: If filesytem is not persistent, use a database or another method.
 
 while True:
-    socket = urllib.urlopen("http://www.reddit.com/r/cfb/wiki/inlineflair/")
+    socket = urllib.urlopen("http://www.reddit.com/r/CFB/wiki/inlineflair/")
     page = str(socket.read())
     socket.close()
 
@@ -60,18 +63,18 @@ while True:
     result48 = re.findall(r'\(#f/uamn-sheet\d+-row\d+-col\d+\)', page)[0]
     result49 = re.findall(r'\(#f/loyolachicago-sheet\d+-row\d+-col\d+\)', page)[0]
 
-    with open("updatevalue.py", "w") as bobo:
-    bobo.write("acadia = '%s'\nwaseda = '%s'\nwartburg = '%s'\nwaynesburg = '%s'\ncornellia = '%s'\nkyoto = '%s'\ngrovecity = '%s'\n"
-    "mercyhurst = '%s'\nmaranathabaptist = '%s'\noxford = '%s'\nkyushu = '%s'\nliupost = '%s'\ntrine = '%s'\ntarletonstate = '%s'\nwisconsinstout = '%s'\n"
-    "sherbrooke = '%s'\nsetsunan = '%s'\nsouthdakotamines = '%s'\nrochester = '%s'\nindianapolis = '%s'\nhokkaido = '%s'\nhamilton = '%s'\nemporiastate = '%s'\n"
-    "wisconsineauclaire = '%s'\nbirminghamsouthern = '%s'\ndean = '%s'\nosakakyoiku = '%s'\ndixiestate = '%s'\nwisconsinlacrosse = '%s'\nnorthampton = '%s'\n"
-    "union = '%s'\nurbana = '%s'\nalma = '%s'\ngardencitycc = '%s'\nxavier = \"%s\"\nbrunel = \"%s\"\nkurume = \"%s\"\nlaurentian = \"%s\"\n"
-    "glenvillestate = '%s'\ngettysburg = '%s'\nstanselm = '%s'\nwilkes = '%s'\nrosehulman = '%s'\nhastings = '%s'\nstaffordshire = '%s'\n"
-    "otemongakuin = '%s'\nkanagawatech = '%s'\nuamn = '%s'\nloyolachicago = \"%s\"\n" % (
-        result1, result2, result3, result4, result5, result6, result7, result8, result9, result10, result11,
-        result12, result13, result14, result15, result16, result17, result18, result19, result20, result21, result22,
-        result23, result24, result25, result26, result27, result28, result29, result30, result31, result32, result33,
-        result34, result35, result36, result37, result38, result39, result40, result41, result42, result43,
-        result44, result45, result46, result47, result48, result49))
+    with open("updatevalue.py", "w") as updateall:
+        updateall.write("acadia = '%s'\nwaseda = '%s'\nwartburg = '%s'\nwaynesburg = '%s'\ncornellia = '%s'\nkyoto = '%s'\ngrovecity = '%s'\n"
+        "mercyhurst = '%s'\nmaranathabaptist = '%s'\noxford = '%s'\nkyushu = '%s'\nliupost = '%s'\ntrine = '%s'\ntarletonstate = '%s'\nwisconsinstout = '%s'\n"
+        "sherbrooke = '%s'\nsetsunan = '%s'\nsouthdakotamines = '%s'\nrochester = '%s'\nindianapolis = '%s'\nhokkaido = '%s'\nhamilton = '%s'\nemporiastate = '%s'\n"
+        "wisconsineauclaire = '%s'\nbirminghamsouthern = '%s'\ndean = '%s'\nosakakyoiku = '%s'\ndixiestate = '%s'\nwisconsinlacrosse = '%s'\nnorthampton = '%s'\n"
+        "union = '%s'\nurbana = '%s'\nalma = '%s'\ngardencitycc = '%s'\nxavier = \"%s\"\nbrunel = \"%s\"\nkurume = \"%s\"\nlaurentian = \"%s\"\n"
+        "glenvillestate = '%s'\ngettysburg = '%s'\nstanselm = '%s'\nwilkes = '%s'\nrosehulman = '%s'\nhastings = '%s'\nstaffordshire = '%s'\n"
+        "otemongakuin = '%s'\nkanagawatech = '%s'\nuamn = '%s'\nloyolachicago = \"%s\"\n" % (
+            result1, result2, result3, result4, result5, result6, result7, result8, result9, result10, result11,
+            result12, result13, result14, result15, result16, result17, result18, result19, result20, result21, result22,
+            result23, result24, result25, result26, result27, result28, result29, result30, result31, result32, result33,
+            result34, result35, result36, result37, result38, result39, result40, result41, result42, result43,
+            result44, result45, result46, result47, result48, result49))
 
     time.sleep(86400)

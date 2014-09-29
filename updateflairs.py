@@ -63,8 +63,8 @@ while True:
     result48 = re.findall(r'\(#f/uamn-sheet\d+-row\d+-col\d+\)', page)[0]
     result49 = re.findall(r'\(#f/loyolachicago-sheet\d+-row\d+-col\d+\)', page)[0]
 
-    with open("updatevalue.py", "w") as updateall:
-        updateall.write("acadia = '%s'\nwaseda = '%s'\nwartburg = '%s'\nwaynesburg = '%s'\ncornellia = '%s'\nkyoto = '%s'\ngrovecity = '%s'\n"
+    with open("updatevalue.py", "w") as writeupdate:
+        writeupdate.write("acadia = '%s'\nwaseda = '%s'\nwartburg = '%s'\nwaynesburg = '%s'\ncornellia = '%s'\nkyoto = '%s'\ngrovecity = '%s'\n"
         "mercyhurst = '%s'\nmaranathabaptist = '%s'\noxford = '%s'\nkyushu = '%s'\nliupost = '%s'\ntrine = '%s'\ntarletonstate = '%s'\nwisconsinstout = '%s'\n"
         "sherbrooke = '%s'\nsetsunan = '%s'\nsouthdakotamines = '%s'\nrochester = '%s'\nindianapolis = '%s'\nhokkaido = '%s'\nhamilton = '%s'\nemporiastate = '%s'\n"
         "wisconsineauclaire = '%s'\nbirminghamsouthern = '%s'\ndean = '%s'\nosakakyoiku = '%s'\ndixiestate = '%s'\nwisconsinlacrosse = '%s'\nnorthampton = '%s'\n"

@@ -48,16 +48,30 @@ while True:
     result36 = re.findall(r'\(#f/brunel-sheet\d+-row\d+-col\d+\)', page)[0]
     result37 = re.findall(r'\(#f/kurume-sheet\d+-row\d+-col\d+\)', page)[0]
     result38 = re.findall(r'\(#f/laurentian-sheet\d+-row\d+-col\d+\)', page)[0]
+    result39 = re.findall(r'\(#f/glenvillestate-sheet\d+-row\d+-col\d+\)', page)[0]
+    result40 = re.findall(r'\(#f/gettysburg-sheet\d+-row\d+-col\d+\)', page)[0]
+    result41 = re.findall(r'\(#f/stanselm-sheet\d+-row\d+-col\d+\)', page)[0]
+    result42 = re.findall(r'\(#f/wilkes-sheet\d+-row\d+-col\d+\)', page)[0]
+    result43 = re.findall(r'\(#f/rosehulman-sheet\d+-row\d+-col\d+\)', page)[0]
+    result44 = re.findall(r'\(#f/hastings-sheet\d+-row\d+-col\d+\)', page)[0]
+    result45 = re.findall(r'\(#f/staffordshire-sheet\d+-row\d+-col\d+\)', page)[0]
+    result46 = re.findall(r'\(#f/otemongakuin-sheet\d+-row\d+-col\d+\)', page)[0]
+    result47 = re.findall(r'\(#f/kanagawatech-sheet\d+-row\d+-col\d+\)', page)[0]
+    result48 = re.findall(r'\(#f/uamn-sheet\d+-row\d+-col\d+\)', page)[0]
+    result49 = re.findall(r'\(#f/loyolachicago-sheet\d+-row\d+-col\d+\)', page)[0]
 
     with open("updatevalue.py", "w") as bobo:
-        bobo.write("acadia = '%s'\nwaseda = '%s'\nwartburg = '%s'\nwaynesburg = '%s'\ncornellia = '%s'\nkyoto = '%s'\ngrovecity = '%s'\n"
-        "mercyhurst = '%s'\nmaranathabaptist = '%s'\noxford = '%s'\nkyushu = '%s'\nliupost = '%s'\ntrine = '%s'\ntarletonstate = '%s'\nwisconsinstout = '%s'\n"
-        "sherbrooke = '%s'\nsetsunan = '%s'\nslipperyrock = '%s'\nrochester = '%s'\nindianapolis = '%s'\nhokkaido = '%s'\nhamilton = '%s'\nemporiastate = '%s'\n"
-        "wisconsineauclaire = '%s'\nbirminghamsouthern = '%s'\ndean = '%s'\nosakakyoiku = '%s'\ndixiestate = '%s'\nwisconsinlacrosse = '%s'\nnorthampton = '%s'\n"
-        "union = '%s'\nurbana = '%s'\nalma = '%s'\ngardencitycc = '%s'\nxavier = \"%s\"\nbrunel = \"%s\"\nkurume = \"%s\"\nlaurentian = \"%s\"\n" % (
-            result1, result2, result3, result4, result5, result6, result7, result8, result9, result10, result11,
-            result12, result13, result14, result15,result16, result17, result18, result19, result20, result21, result22,
-            result23, result24, result25, result26, result27, result28, result29, result30, result31, result32, result33,
-            result34, result35, result36, result37, result38))
+    bobo.write("acadia = '%s'\nwaseda = '%s'\nwartburg = '%s'\nwaynesburg = '%s'\ncornellia = '%s'\nkyoto = '%s'\ngrovecity = '%s'\n"
+    "mercyhurst = '%s'\nmaranathabaptist = '%s'\noxford = '%s'\nkyushu = '%s'\nliupost = '%s'\ntrine = '%s'\ntarletonstate = '%s'\nwisconsinstout = '%s'\n"
+    "sherbrooke = '%s'\nsetsunan = '%s'\nsouthdakotamines = '%s'\nrochester = '%s'\nindianapolis = '%s'\nhokkaido = '%s'\nhamilton = '%s'\nemporiastate = '%s'\n"
+    "wisconsineauclaire = '%s'\nbirminghamsouthern = '%s'\ndean = '%s'\nosakakyoiku = '%s'\ndixiestate = '%s'\nwisconsinlacrosse = '%s'\nnorthampton = '%s'\n"
+    "union = '%s'\nurbana = '%s'\nalma = '%s'\ngardencitycc = '%s'\nxavier = \"%s\"\nbrunel = \"%s\"\nkurume = \"%s\"\nlaurentian = \"%s\"\n"
+    "glenvillestate = '%s'\ngettysburg = '%s'\nstanselm = '%s'\nwilkes = '%s'\nrosehulman = '%s'\nhastings = '%s'\nstaffordshire = '%s'\n"
+    "otemongakuin = '%s'\nkanagawatech = '%s'\nuamn = '%s'\nloyolachicago = \"%s\"\n" % (
+        result1, result2, result3, result4, result5, result6, result7, result8, result9, result10, result11,
+        result12, result13, result14, result15, result16, result17, result18, result19, result20, result21, result22,
+        result23, result24, result25, result26, result27, result28, result29, result30, result31, result32, result33,
+        result34, result35, result36, result37, result38, result39, result40, result41, result42, result43,
+        result44, result45, result46, result47, result48, result49))
 
     time.sleep(86400)

@@ -1,33 +1,33 @@
 import random
 import updatevalue as uv
 
-A = ('[a](#f/army)', '[a](#f/arizona)', '[a](#f/alabama)', '[a]%s' % (uv.alma), '[a]%s' % (uv.acadia))
+A = ('[a](#f/alabama)', '[a](#f/arizona)', '[a](#f/army)', '[a]%s' % (uv.alma), '[a]%s' % (uv.uamn), '[a]%s' % (uv.acadia), '[a]%s' % (uv.stanselm))
 B = ('[b](#f/b)', '[b]%s' % (uv.birminghamsouthern), '[b]%s' % (uv.brunel))
 C = ('[c]%s' % (uv.cornellia), '[c](#f/colgate)', '[c](#f/chattanooga)')
 D = ('[d](#f/dartmouth)', '[d]%s' % (uv.dean), '[d]%s' % (uv.osakakyoiku), '[d]%s' % (uv.dixiestate), '[d](#f/duke)')
-E = ('[e]%s' % (uv.emporiastate), '[e](#f/easternmichigan)', '[e]%s' % (uv.wisconsineauclaire))
-G = ('[g]%s' % (uv.kyoto), '[g](#f/georgia)', '[g]%s' % (uv.grovecity), '[g]%s' % (uv.gardencitycc), '[g](#f/gramblingstate)')
-H = ('[h]%s' % (uv.hamilton), '[h](#f/harvard)', '[h]%s' % (uv.hokkaido), '[h](#f/hawaii)')
+E = ('[e]%s' % (uv.wisconsineauclaire), '[e](#f/easternmichigan)', '[e]%s' % (uv.emporiastate))
+G = ('[g]%s' % (uv.kyoto), '[g](#f/georgia)', '[g]%s' % (uv.gettysburg), '[g]%s' % (uv.grovecity), '[g]%s' % (uv.gardencitycc), '[g]%s' % (uv.glenvillestate), '[g](#f/gramblingstate)')
+H = ('[h]%s' % (uv.hamilton), '[h](#f/harvard)', '[h]%s' % (uv.hokkaido), '[h]%s' % (uv.hastings), '[h](#f/hawaii)')
 I = ('[i](#f/illinois)', '[i]%s' % (uv.indianapolis), '[i](#f/idaho)')
-K = ('[k]%s' % (uv.kurume), '[k](#f/k)')
-L = ('[l](#f/l)', '[l]%s' % (uv.wisconsinlacrosse))
-M = ('[m](#f/michigan)', '[m]%s' % (uv.mercyhurst), '[m](#f/murraystate)', '[m](#f/minnesota)', '[m]%s' % (uv.maranathabaptist), '[m](#f/maryland)')
-N = ('[n](#f/nebraska)', '[n]%s' % (uv.northampton), '[n](#f/northwestern)', '[n](#f/navy)')
-O = ('[o](#f/oregon)', '[o]%s' % (uv.oxford), '[o](#f/ohiostate)')
+K = ('[k]%s' % (uv.kurume), '[k]%s' % (uv.kanagawatech), '[k](#f/k)')
+L = ('[l](#f/l)', '[l]%s' % (uv.wisconsinlacrosse), '[l]%s' % (uv.loyolachicago))
+M = ('[m](#f/michigan)', '[m]%s' % (uv.mercyhurst), '[m](#f/murraystate)', '[m](#f/minnesota)', '[m]%s' % (uv.maranathabaptist), '[m](#f/maryland)', '[m]%s' % uv.southdakotamines)
+N = ('[n](#f/nebraska)', '[n]%s' % (uv.northampton), '[n](#f/northwestern)')
+O = ('[o](#f/oregon)', '[o]%s' % (uv.oxford), '[o]%s' % (uv.otemongakuin), '[o](#f/ohiostate)')
 P = ('[p](#f/purdue)', '[p](#f/princeton)', '[p]%s' % (uv.kyushu), '[p]%s' % (uv.liupost))
-R = ('[r]%s' % (uv.rochester), '[r](#f/rutgers)', '[r](#f/rice)')
-S = ('[s]%s' % (uv.wisconsinstout), '[s]%s' % (uv.sherbrooke), '[s]%s' % (uv.setsunan), '[s]%s' % (uv.slipperyrock))
+R = ('[r]%s' % (uv.rochester), '[r](#f/rutgers)', '[r](#f/rice)', '[r]%s' % (uv.rosehulman))
+S = ('[s]%s' % (uv.wisconsinstout), '[s](#f/syracuse)', '[s]%s' % (uv.sherbrooke), '[s]%s' % (uv.setsunan))
 T = ('[t]%s' % (uv.trine), '[t](#f/tulane)', '[t]%s' % (uv.tarletonstate), '[t](#f/temple)')
-U = ('[u]%s' % (uv.union), '[u]%s' % (uv.urbana))
+U = ('[u]%s' % (uv.union), '[u]%s' % (uv.urbana), '[u]%s' % (uv.staffordshire))
 V = ('[v](#f/v)', '[u]%s' % (uv.laurentian))
-W = ('[w]%s' % (uv.waseda), '[w](#f/washington)', '[w]%s' % (uv.wartburg), '[w](#f/wisconsin)', '[w]%s' % (uv.waynesburg))
+W = ('[w]%s' % (uv.waseda), '[w]%s' % (uv.wilkes), '[w](#f/washington)', '[w]%s' % (uv.wartburg), '[w](#f/wisconsin)', '[w]%s' % (uv.waynesburg))
 X = ('[x](#f/x)', '[x]%s' % (uv.xavier))
 Y = ('[y](#f/byu)', '[y](#f/yale)')
 
 
-def flairbot(texty):
+def flairgen(texty):
     texty = texty.upper()
-    texty = texty.replace('. ', '.').replace('BU', '\\').replace('SC', '\b').replace('OU', ']').replace('AF', '}').replace(
+    texty = texty.replace('. ', '.').replace('N\'', '_').replace('BU', '\\').replace('SC', '\b').replace('OU', ']').replace('AF', '}').replace(
         'TT', '[').replace('JU', '~').replace('GS', '`').replace('BIG', '>').replace('SEC', "\a").replace('UK', "{").replace(
         '! ', "!").replace('? ', "?")
     texty = list(texty)
@@ -181,13 +181,15 @@ def flairbot(texty):
             texty[char] = '[sec](#l/sec)'
         elif texty[char] == '{':
             texty[char] = '[uk](#f/kentucky)'
+        elif texty[char] == '_':
+            texty[char] = '[n](#f/navy)'
         else:
             True
         char += 1
     return ''.join(texty)
 
 
-def flairbot_safe(texty):
+def flairgen_safe(texty):
     texty = texty.replace('. ', '.').replace('! ', "!").replace('? ', "?")
     texty = list(texty.upper())
     s = 0

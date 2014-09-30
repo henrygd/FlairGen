@@ -5,6 +5,6 @@ A tool that allows users of reddit's college football subreddit ([/r/cfb](http:/
 
 [Try it here](http://rcfb-flairgen.rhcloud.com/)
 
-![](http://i.imgur.com/lc1qwYB.png)
+![](http://i.imgur.com/cZs9HqX.png)
 
 Feel free to use for whatever, or set up another site if the one above goes down.

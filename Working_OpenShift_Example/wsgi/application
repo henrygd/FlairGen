@@ -4,6 +4,9 @@ import sys
 
 sys.path.insert(0, os.path.dirname(__file__) or '.')
 
+OPENSHIFT_DATA_DIR = os.getenv("OPENSHIFT_DATA_DIR")
+sys.path.insert(0, OPENSHIFT_DATA_DIR)
+
 PY_DIR = os.path.join(os.environ['OPENSHIFT_HOMEDIR'], "python")
 
 virtenv = PY_DIR + '/virtenv/'
@@ -18,5 +21,4 @@ try:
 except IOError:
     pass
 
-from myflaskapp import app as application
-
+from app import app as application

@@ -3,9 +3,7 @@ import os
 import urllib
 import re
 
-OPENSHIFT_DATA_DIR = os.getenv("OPENSHIFT_DATA_DIR")
-
-filelocation = os.path.join(OPENSHIFT_DATA_DIR, "updatevalue.py")
+filelocation = os.path.join(os.environ['OPENSHIFT_DATA_DIR'], "updatevalue.py")
 
 socket = urllib.urlopen("http://www.reddit.com/r/CFB/wiki/inlineflair/")
 

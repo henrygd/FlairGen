@@ -1,7 +1,3 @@
-import sys
-import os
-OPENSHIFT_DATA_DIR = os.getenv("OPENSHIFT_DATA_DIR")
-sys.path.insert(0, OPENSHIFT_DATA_DIR)
 import updatevalue as uv
 import random
 

@@ -26,7 +26,6 @@ def application(environ, start_response):
         ctype = 'text/html'
         response_body = '''<!doctype html>
 <html lang="en">
-<head>
 <body>
 <p>If you are seeing this, something has gone wrong. Sorry!</p>
 </body>

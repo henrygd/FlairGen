@@ -1,80 +1,113 @@
 import urllib
+import sqlite3
 import re
-import time
 
-# Updates flair values each day using an infinite loop and time.sleep().
-# Can also be used sans loop & time module with cron or another scheduler.
-# ^Do this if using a platform that charges for ongoing background jobs.
+socket = urllib.urlopen("http://www.reddit.com/r/CFB/wiki/inlineflair/")
 
-# Note: If filesytem is not persistent, use a database or another method.
+page = str(socket.read())
 
-while True:
-    socket = urllib.urlopen("http://www.reddit.com/r/CFB/wiki/inlineflair/")
-    page = str(socket.read())
-    socket.close()
+socket.close()
 
-    result1 = re.findall(r'\(#f/acadia-sheet\d+-row\d+-col\d+\)', page)[0]
-    result2 = re.findall(r'\(#f/waseda-sheet\d+-row\d+-col\d+\)', page)[0]
-    result3 = re.findall(r'\(#f/wartburg-sheet\d+-row\d+-col\d+\)', page)[0]
-    result4 = re.findall(r'\(#f/waynesburg-sheet\d+-row\d+-col\d+\)', page)[0]
-    result5 = re.findall(r'\(#f/cornellia-sheet\d+-row\d+-col\d+\)', page)[0]
-    result6 = re.findall(r'\(#f/kyoto-sheet\d+-row\d+-col\d+\)', page)[0]
-    result7 = re.findall(r'\(#f/grovecity-sheet\d+-row\d+-col\d+\)', page)[0]
-    result8 = re.findall(r'\(#f/mercyhurst-sheet\d+-row\d+-col\d+\)', page)[0]
-    result9 = re.findall(r'\(#f/maranathabaptist-sheet\d+-row\d+-col\d+\)', page)[0]
-    result10 = re.findall(r'\(#f/oxford-sheet\d+-row\d+-col\d+\)', page)[0]
-    result11 = re.findall(r'\(#f/kyushu-sheet\d+-row\d+-col\d+\)', page)[0]
-    result12 = re.findall(r'\(#f/liupost-sheet\d+-row\d+-col\d+\)', page)[0]
-    result13 = re.findall(r'\(#f/trine-sheet\d+-row\d+-col\d+\)', page)[0]
-    result14 = re.findall(r'\(#f/tarletonstate-sheet\d+-row\d+-col\d+\)', page)[0]
-    result15 = re.findall(r'\(#f/wisconsinstout-sheet\d+-row\d+-col\d+\)', page)[0]
-    result16 = re.findall(r'\(#f/sherbrooke-sheet\d+-row\d+-col\d+\)', page)[0]
-    result17 = re.findall(r'\(#f/setsunan-sheet\d+-row\d+-col\d+\)', page)[0]
-    result18 = re.findall(r'\(#f/slipperyrock-sheet\d+-row\d+-col\d+\)', page)[0]
-    result19 = re.findall(r'\(#f/rochester-sheet\d+-row\d+-col\d+\)', page)[0]
-    result20 = re.findall(r'\(#f/indianapolis-sheet\d+-row\d+-col\d+\)', page)[0]
-    result21 = re.findall(r'\(#f/hokkaido-sheet\d+-row\d+-col\d+\)', page)[0]
-    result22 = re.findall(r'\(#f/hamilton-sheet\d+-row\d+-col\d+\)', page)[0]
-    result23 = re.findall(r'\(#f/emporiastate-sheet\d+-row\d+-col\d+\)', page)[0]
-    result24 = re.findall(r'\(#f/wisconsineauclaire-sheet\d+-row\d+-col\d+\)', page)[0]
-    result25 = re.findall(r'\(#f/birminghamsouthern-sheet\d+-row\d+-col\d+\)', page)[0]
-    result26 = re.findall(r'\(#f/dean-sheet\d+-row\d+-col\d+\)', page)[0]
-    result27 = re.findall(r'\(#f/osakakyoiku-sheet\d+-row\d+-col\d+\)', page)[0]
-    result28 = re.findall(r'\(#f/dixiestate-sheet\d+-row\d+-col\d+\)', page)[0]
-    result29 = re.findall(r'\(#f/wisconsinlacrosse-sheet\d+-row\d+-col\d+\)', page)[0]
-    result30 = re.findall(r'\(#f/northampton-sheet\d+-row\d+-col\d+\)', page)[0]
-    result31 = re.findall(r'\(#f/union-sheet\d+-row\d+-col\d+\)', page)[0]
-    result32 = re.findall(r'\(#f/urbana-sheet\d+-row\d+-col\d+\)', page)[0]
-    result33 = re.findall(r'\(#f/alma-sheet\d+-row\d+-col\d+\)', page)[0]
-    result34 = re.findall(r'\(#f/gardencitycc-sheet\d+-row\d+-col\d+\)', page)[0]
-    result35 = re.findall(r'\(#f/xavier-sheet\d+-row\d+-col\d+\)', page)[0]
-    result36 = re.findall(r'\(#f/brunel-sheet\d+-row\d+-col\d+\)', page)[0]
-    result37 = re.findall(r'\(#f/kurume-sheet\d+-row\d+-col\d+\)', page)[0]
-    result38 = re.findall(r'\(#f/laurentian-sheet\d+-row\d+-col\d+\)', page)[0]
-    result39 = re.findall(r'\(#f/glenvillestate-sheet\d+-row\d+-col\d+\)', page)[0]
-    result40 = re.findall(r'\(#f/gettysburg-sheet\d+-row\d+-col\d+\)', page)[0]
-    result41 = re.findall(r'\(#f/stanselm-sheet\d+-row\d+-col\d+\)', page)[0]
-    result42 = re.findall(r'\(#f/wilkes-sheet\d+-row\d+-col\d+\)', page)[0]
-    result43 = re.findall(r'\(#f/rosehulman-sheet\d+-row\d+-col\d+\)', page)[0]
-    result44 = re.findall(r'\(#f/hastings-sheet\d+-row\d+-col\d+\)', page)[0]
-    result45 = re.findall(r'\(#f/staffordshire-sheet\d+-row\d+-col\d+\)', page)[0]
-    result46 = re.findall(r'\(#f/otemongakuin-sheet\d+-row\d+-col\d+\)', page)[0]
-    result47 = re.findall(r'\(#f/kanagawatech-sheet\d+-row\d+-col\d+\)', page)[0]
-    result48 = re.findall(r'\(#f/uamn-sheet\d+-row\d+-col\d+\)', page)[0]
-    result49 = re.findall(r'\(#f/loyolachicago-sheet\d+-row\d+-col\d+\)', page)[0]
+result1 = (re.findall(r'\(#f/acadia-sheet\d+-row\d+-col\d+\)', page)[0],)
+result2 = (re.findall(r'\(#f/waseda-sheet\d+-row\d+-col\d+\)', page)[0],)
+result3 = (re.findall(r'\(#f/wartburg-sheet\d+-row\d+-col\d+\)', page)[0],)
+result4 = (re.findall(r'\(#f/waynesburg-sheet\d+-row\d+-col\d+\)', page)[0],)
+result5 = (re.findall(r'\(#f/cornellia-sheet\d+-row\d+-col\d+\)', page)[0],)
+result6 = (re.findall(r'\(#f/kyoto-sheet\d+-row\d+-col\d+\)', page)[0],)
+result7 = (re.findall(r'\(#f/grovecity-sheet\d+-row\d+-col\d+\)', page)[0],)
+result8 = (re.findall(r'\(#f/mercyhurst-sheet\d+-row\d+-col\d+\)', page)[0],)
+result9 = (re.findall(r'\(#f/maranathabaptist-sheet\d+-row\d+-col\d+\)', page)[0],)
+result10 = (re.findall(r'\(#f/oxford-sheet\d+-row\d+-col\d+\)', page)[0],)
+result11 = (re.findall(r'\(#f/kyushu-sheet\d+-row\d+-col\d+\)', page)[0],)
+result12 = (re.findall(r'\(#f/liupost-sheet\d+-row\d+-col\d+\)', page)[0],)
+result13 = (re.findall(r'\(#f/trine-sheet\d+-row\d+-col\d+\)', page)[0],)
+result14 = (re.findall(r'\(#f/tarletonstate-sheet\d+-row\d+-col\d+\)', page)[0],)
+result15 = (re.findall(r'\(#f/wisconsinstout-sheet\d+-row\d+-col\d+\)', page)[0],)
+result16 = (re.findall(r'\(#f/sherbrooke-sheet\d+-row\d+-col\d+\)', page)[0],)
+result17 = (re.findall(r'\(#f/setsunan-sheet\d+-row\d+-col\d+\)', page)[0],)
+result18 = (re.findall(r'\(#f/southdakotamines-sheet\d+-row\d+-col\d+\)', page)[0],)
+result19 = (re.findall(r'\(#f/rochester-sheet\d+-row\d+-col\d+\)', page)[0],)
+result20 = (re.findall(r'\(#f/indianapolis-sheet\d+-row\d+-col\d+\)', page)[0],)
+result21 = (re.findall(r'\(#f/hokkaido-sheet\d+-row\d+-col\d+\)', page)[0],)
+result22 = (re.findall(r'\(#f/hamilton-sheet\d+-row\d+-col\d+\)', page)[0],)
+result23 = (re.findall(r'\(#f/emporiastate-sheet\d+-row\d+-col\d+\)', page)[0],)
+result24 = (re.findall(r'\(#f/wisconsineauclaire-sheet\d+-row\d+-col\d+\)', page)[0],)
+result25 = (re.findall(r'\(#f/birminghamsouthern-sheet\d+-row\d+-col\d+\)', page)[0],)
+result26 = (re.findall(r'\(#f/dean-sheet\d+-row\d+-col\d+\)', page)[0],)
+result27 = (re.findall(r'\(#f/osakakyoiku-sheet\d+-row\d+-col\d+\)', page)[0],)
+result28 = (re.findall(r'\(#f/dixiestate-sheet\d+-row\d+-col\d+\)', page)[0],)
+result29 = (re.findall(r'\(#f/wisconsinlacrosse-sheet\d+-row\d+-col\d+\)', page)[0],)
+result30 = (re.findall(r'\(#f/northampton-sheet\d+-row\d+-col\d+\)', page)[0],)
+result31 = (re.findall(r'\(#f/union-sheet\d+-row\d+-col\d+\)', page)[0],)
+result32 = (re.findall(r'\(#f/urbana-sheet\d+-row\d+-col\d+\)', page)[0],)
+result33 = (re.findall(r'\(#f/alma-sheet\d+-row\d+-col\d+\)', page)[0],)
+result34 = (re.findall(r'\(#f/gardencitycc-sheet\d+-row\d+-col\d+\)', page)[0],)
+result35 = (re.findall(r'\(#f/xavier-sheet\d+-row\d+-col\d+\)', page)[0],)
+result36 = (re.findall(r'\(#f/brunel-sheet\d+-row\d+-col\d+\)', page)[0],)
+result37 = (re.findall(r'\(#f/kurume-sheet\d+-row\d+-col\d+\)', page)[0],)
+result38 = (re.findall(r'\(#f/laurentian-sheet\d+-row\d+-col\d+\)', page)[0],)
+result39 = (re.findall(r'\(#f/glenvillestate-sheet\d+-row\d+-col\d+\)', page)[0],)
+result40 = (re.findall(r'\(#f/gettysburg-sheet\d+-row\d+-col\d+\)', page)[0],)
+result41 = (re.findall(r'\(#f/stanselm-sheet\d+-row\d+-col\d+\)', page)[0],)
+result42 = (re.findall(r'\(#f/wilkes-sheet\d+-row\d+-col\d+\)', page)[0],)
+result43 = (re.findall(r'\(#f/rosehulman-sheet\d+-row\d+-col\d+\)', page)[0],)
+result44 = (re.findall(r'\(#f/hastings-sheet\d+-row\d+-col\d+\)', page)[0],)
+result45 = (re.findall(r'\(#f/staffordshire-sheet\d+-row\d+-col\d+\)', page)[0],)
+result46 = (re.findall(r'\(#f/otemongakuin-sheet\d+-row\d+-col\d+\)', page)[0],)
+result47 = (re.findall(r'\(#f/kanagawatech-sheet\d+-row\d+-col\d+\)', page)[0],)
+result48 = (re.findall(r'\(#f/uamn-sheet\d+-row\d+-col\d+\)', page)[0],)
+result49 = (re.findall(r'\(#f/loyolachicago-sheet\d+-row\d+-col\d+\)', page)[0],)
 
-    with open("updatevalue.py", "w") as writeupdate:
-        writeupdate.write("acadia = '%s'\nwaseda = '%s'\nwartburg = '%s'\nwaynesburg = '%s'\ncornellia = '%s'\nkyoto = '%s'\ngrovecity = '%s'\n"
-        "mercyhurst = '%s'\nmaranathabaptist = '%s'\noxford = '%s'\nkyushu = '%s'\nliupost = '%s'\ntrine = '%s'\ntarletonstate = '%s'\nwisconsinstout = '%s'\n"
-        "sherbrooke = '%s'\nsetsunan = '%s'\nsouthdakotamines = '%s'\nrochester = '%s'\nindianapolis = '%s'\nhokkaido = '%s'\nhamilton = '%s'\nemporiastate = '%s'\n"
-        "wisconsineauclaire = '%s'\nbirminghamsouthern = '%s'\ndean = '%s'\nosakakyoiku = '%s'\ndixiestate = '%s'\nwisconsinlacrosse = '%s'\nnorthampton = '%s'\n"
-        "union = '%s'\nurbana = '%s'\nalma = '%s'\ngardencitycc = '%s'\nxavier = \"%s\"\nbrunel = \"%s\"\nkurume = \"%s\"\nlaurentian = \"%s\"\n"
-        "glenvillestate = '%s'\ngettysburg = '%s'\nstanselm = '%s'\nwilkes = '%s'\nrosehulman = '%s'\nhastings = '%s'\nstaffordshire = '%s'\n"
-        "otemongakuin = '%s'\nkanagawatech = '%s'\nuamn = '%s'\nloyolachicago = \"%s\"\n" % (
-            result1, result2, result3, result4, result5, result6, result7, result8, result9, result10, result11,
-            result12, result13, result14, result15, result16, result17, result18, result19, result20, result21, result22,
-            result23, result24, result25, result26, result27, result28, result29, result30, result31, result32, result33,
-            result34, result35, result36, result37, result38, result39, result40, result41, result42, result43,
-            result44, result45, result46, result47, result48, result49))
-
-    time.sleep(86400)
+with sqlite3.connect("flairs.db") as connection:
+    c = connection.cursor()
+    c.execute("""DROP TABLE IF EXISTS codes""")
+    c.execute("""CREATE TABLE codes(school TEXT, code TEXT)""")
+    c.execute('INSERT INTO codes VALUES("acadia", ?);', (result1))
+    c.execute('INSERT INTO codes VALUES("waseda", ?);', (result2))
+    c.execute('INSERT INTO codes VALUES("wartburg", ?);', (result3))
+    c.execute('INSERT INTO codes VALUES("waynesburg", ?);', (result4))
+    c.execute('INSERT INTO codes VALUES("cornellia", ?);', (result5))
+    c.execute('INSERT INTO codes VALUES("kyoto", ?);', (result6))
+    c.execute('INSERT INTO codes VALUES("grovecity", ?);', (result7))
+    c.execute('INSERT INTO codes VALUES("mercyhurst", ?);', (result8))
+    c.execute('INSERT INTO codes VALUES("maranathabaptist", ?);', (result9))
+    c.execute('INSERT INTO codes VALUES("oxford", ?);', (result10))
+    c.execute('INSERT INTO codes VALUES("kyushu", ?);', (result11))
+    c.execute('INSERT INTO codes VALUES("liupost", ?);', (result12))
+    c.execute('INSERT INTO codes VALUES("trine", ?);', (result13))
+    c.execute('INSERT INTO codes VALUES("tarletonstate", ?);', (result14))
+    c.execute('INSERT INTO codes VALUES("wisconsinstout", ?);', (result15))
+    c.execute('INSERT INTO codes VALUES("sherbrooke", ?);', (result16))
+    c.execute('INSERT INTO codes VALUES("setsunan", ?);', (result17))
+    c.execute('INSERT INTO codes VALUES("southdakotamines", ?);', (result18))
+    c.execute('INSERT INTO codes VALUES("rochester", ?);', (result19))
+    c.execute('INSERT INTO codes VALUES("indianapolis", ?);', (result20))
+    c.execute('INSERT INTO codes VALUES("hokkaido", ?);', (result21))
+    c.execute('INSERT INTO codes VALUES("hamilton", ?);', (result22))
+    c.execute('INSERT INTO codes VALUES("emporiastate", ?);', (result23))
+    c.execute('INSERT INTO codes VALUES("wisconsineauclaire", ?);', (result24))
+    c.execute('INSERT INTO codes VALUES("birminghamsouthern", ?);', (result25))
+    c.execute('INSERT INTO codes VALUES("dean", ?);', (result26))
+    c.execute('INSERT INTO codes VALUES("osakakyoiku", ?);', (result27))
+    c.execute('INSERT INTO codes VALUES("dixiestate", ?);', (result28))
+    c.execute('INSERT INTO codes VALUES("wisconsinlacrosse", ?);', (result29))
+    c.execute('INSERT INTO codes VALUES("northampton", ?);', (result30))
+    c.execute('INSERT INTO codes VALUES("union", ?);', (result31))
+    c.execute('INSERT INTO codes VALUES("urbana", ?);', (result32))
+    c.execute('INSERT INTO codes VALUES("alma", ?);', (result33))
+    c.execute('INSERT INTO codes VALUES("gardencitycc", ?);', (result34))
+    c.execute('INSERT INTO codes VALUES("xavier", ?);', (result35))
+    c.execute('INSERT INTO codes VALUES("brunel", ?);', (result36))
+    c.execute('INSERT INTO codes VALUES("kurume", ?);', (result37))
+    c.execute('INSERT INTO codes VALUES("laurentian", ?);', (result38))
+    c.execute('INSERT INTO codes VALUES("glenvillestate", ?);', (result39))
+    c.execute('INSERT INTO codes VALUES("gettysburg", ?);', (result40))
+    c.execute('INSERT INTO codes VALUES("stanselm", ?);', (result41))
+    c.execute('INSERT INTO codes VALUES("wilkes", ?);', (result42))
+    c.execute('INSERT INTO codes VALUES("rosehulman", ?);', (result43))
+    c.execute('INSERT INTO codes VALUES("hastings", ?);', (result44))
+    c.execute('INSERT INTO codes VALUES("staffordshire", ?);', (result45))
+    c.execute('INSERT INTO codes VALUES("otemongakuin", ?);', (result46))
+    c.execute('INSERT INTO codes VALUES("kanagawatech", ?);', (result47))
+    c.execute('INSERT INTO codes VALUES("uamn", ?);', (result48))
+    c.execute('INSERT INTO codes VALUES("loyolachicago", ?);', (result49))

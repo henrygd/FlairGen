@@ -2,13 +2,14 @@ import urllib
 import sqlite3
 import re
 
-# Fetches fresh flair values each day and saves them to an SQLite3 database.
+# Fetches fresh flair values each day and saves them to a SQLite database.
 # Can be run as-is with cron or another scheduler, or used with time.sleep() in
 # an infinite loop.
 
-# SQLite3 requires no setup but the update functionality does not work with non-
-# persistant and/or memory-based filesystems, unless you flush the cache each day.
-# For automatic updates in all cases, see Heroku & OpenShift PostgreSQL examples.
+# This SQLite example requires no setup but the update functionality will not
+# work with non-persistant and/or memory-based filesystems unless you flush the
+# cache each day. For automatic updates in all cases, use a non-local databsase.
+# (See the included Heroku and OpenShift PostgreSQL examples.)
 
 socket = urllib.urlopen("http://www.reddit.com/r/CFB/wiki/inlineflair/")
 

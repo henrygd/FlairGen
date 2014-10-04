@@ -1,27 +1,66 @@
-import updatevalue as uv
 import random
+import psycopg2
 
-A = ('[a](#f/alabama)', '[a](#f/arizona)', '[a](#f/army)', '[a]%s' % (uv.alma), '[a]%s' % (uv.uamn), '[a]%s' % (uv.acadia), '[a]%s' % (uv.stanselm))
-B = ('[b](#f/b)', '[b]%s' % (uv.birminghamsouthern), '[b]%s' % (uv.brunel))
-C = ('[c]%s' % (uv.cornellia), '[c](#f/colgate)', '[c](#f/chattanooga)')
-D = ('[d](#f/dartmouth)', '[d]%s' % (uv.dean), '[d]%s' % (uv.osakakyoiku), '[d]%s' % (uv.dixiestate), '[d](#f/duke)')
-E = ('[e]%s' % (uv.wisconsineauclaire), '[e](#f/easternmichigan)', '[e]%s' % (uv.emporiastate))
-G = ('[g]%s' % (uv.kyoto), '[g](#f/georgia)', '[g]%s' % (uv.gettysburg), '[g]%s' % (uv.grovecity), '[g]%s' % (uv.gardencitycc), '[g]%s' % (uv.glenvillestate), '[g](#f/gramblingstate)')
-H = ('[h]%s' % (uv.hamilton), '[h](#f/harvard)', '[h]%s' % (uv.hokkaido), '[h]%s' % (uv.hastings), '[h](#f/hawaii)')
-I = ('[i](#f/illinois)', '[i]%s' % (uv.indianapolis), '[i](#f/idaho)')
-K = ('[k]%s' % (uv.kurume), '[k]%s' % (uv.kanagawatech), '[k](#f/k)')
-L = ('[l](#f/l)', '[l]%s' % (uv.wisconsinlacrosse), '[l]%s' % (uv.loyolachicago))
-M = ('[m](#f/michigan)', '[m]%s' % (uv.mercyhurst), '[m](#f/murraystate)', '[m](#f/minnesota)', '[m]%s' % (uv.maranathabaptist), '[m](#f/maryland)', '[m]%s' % uv.southdakotamines)
-N = ('[n](#f/nebraska)', '[n]%s' % (uv.northampton), '[n](#f/northwestern)')
-O = ('[o](#f/oregon)', '[o]%s' % (uv.oxford), '[o]%s' % (uv.otemongakuin), '[o](#f/ohiostate)')
-P = ('[p](#f/purdue)', '[p](#f/princeton)', '[p]%s' % (uv.kyushu), '[p]%s' % (uv.liupost))
-R = ('[r]%s' % (uv.rochester), '[r](#f/rutgers)', '[r](#f/rice)', '[r]%s' % (uv.rosehulman))
-S = ('[s]%s' % (uv.wisconsinstout), '[s](#f/syracuse)', '[s]%s' % (uv.sherbrooke), '[s]%s' % (uv.setsunan))
-T = ('[t]%s' % (uv.trine), '[t](#f/tulane)', '[t]%s' % (uv.tarletonstate), '[t](#f/temple)')
-U = ('[u]%s' % (uv.union), '[u]%s' % (uv.urbana), '[u]%s' % (uv.staffordshire))
-V = ('[v](#f/v)', '[u]%s' % (uv.laurentian))
-W = ('[w]%s' % (uv.waseda), '[w]%s' % (uv.wilkes), '[w](#f/washington)', '[w]%s' % (uv.wartburg), '[w](#f/wisconsin)', '[w]%s' % (uv.waynesburg))
-X = ('[x](#f/x)', '[x]%s' % (uv.xavier))
+
+conn = psycopg2.connect("dbname=YOUR_DB_NAME host=YOUR_DB_URL user=YOUR_USERNAME password=YOUR_PASSWORD")
+# ^ Just copy line from updateflairs.py. Must match exactly ^
+
+cur = conn.cursor()
+cur.execute("SELECT * FROM flairs;")
+result = cur.fetchall()
+cur.close()
+conn.close()
+code = dict(result)
+
+
+A = ('[a](#f/alabama)', '[a](#f/arizona)', '[a](#f/army)', '[a]%s' % (code['alma']), '[a]%s' % (
+    code['uamn']), '[a]%s' % (code['acadia']), '[a]%s' % (code['stanselm']))
+
+B = ('[b](#f/b)', '[b]%s' % (code['birminghamsouthern']), '[b]%s' % (code['brunel']))
+
+C = ('[c]%s' % (code['cornellia']), '[c](#f/colgate)', '[c](#f/chattanooga)')
+
+D = ('[d](#f/dartmouth)', '[d]%s' % (code['dean']), '[d]%s' % (code['osakakyoiku']), '[d]%s' % (
+    code['dixiestate']), '[d](#f/duke)')
+
+E = ('[e]%s' % (code['wisconsineauclaire']), '[e](#f/easternmichigan)', '[e]%s' % (code['emporiastate']))
+
+G = ('[g]%s' % (code['kyoto']), '[g](#f/georgia)', '[g]%s' % (code['gettysburg']), '[g]%s' % (
+    code['grovecity']), '[g]%s' % (code['gardencitycc']), '[g]%s' % (code['glenvillestate']), '[g](#f/gramblingstate)')
+
+H = ('[h]%s' % (code['hamilton']), '[h](#f/harvard)', '[h]%s' % (code['hokkaido']), '[h]%s' % (
+    code['hastings']), '[h](#f/hawaii)')
+
+I = ('[i](#f/illinois)', '[i]%s' % (code['indianapolis']), '[i](#f/idaho)')
+
+K = ('[k]%s' % (code['kurume']), '[k]%s' % (code['kanagawatech']), '[k](#f/k)')
+
+L = ('[l](#f/l)', '[l]%s' % (code['wisconsinlacrosse']), '[l]%s' % (code['loyolachicago']))
+
+M = ('[m](#f/michigan)', '[m]%s' % (code['mercyhurst']), '[m](#f/murraystate)', '[m](#f/minnesota)', '[m]%s' % (
+    code['maranathabaptist']), '[m](#f/maryland)', '[m]%s' % (code['southdakotamines']))
+
+N = ('[n](#f/nebraska)', '[n]%s' % (code['northampton']), '[n](#f/northwestern)')
+
+O = ('[o](#f/oregon)', '[o]%s' % (code['oxford']), '[o]%s' % (code['otemongakuin']), '[o](#f/ohiostate)')
+
+P = ('[p](#f/purdue)', '[p](#f/princeton)', '[p]%s' % (code['kyushu']), '[p]%s' % (code['liupost']))
+
+R = ('[r]%s' % (code['rochester']), '[r](#f/rutgers)', '[r](#f/rice)', '[r]%s' % (code['rosehulman']))
+
+S = ('[s]%s' % (code['wisconsinstout']), '[s](#f/syracuse)', '[s]%s' % (code['sherbrooke']), '[s]%s' % (code['setsunan']))
+
+T = ('[t]%s' % (code['trine']), '[t](#f/tulane)', '[t]%s' % (code['tarletonstate']), '[t](#f/temple)')
+
+U = ('[u]%s' % (code['union']), '[u]%s' % (code['urbana']), '[u]%s' % (code['staffordshire']))
+
+V = ('[v](#f/v)', '[u]%s' % (code['laurentian']))
+
+W = ('[w]%s' % (code['waseda']), '[w]%s' % (code['wilkes']), '[w](#f/washington)', '[w]%s' % (
+    code['wartburg']), '[w](#f/wisconsin)', '[w]%s' % (code['waynesburg']))
+
+X = ('[x](#f/x)', '[x]%s' % (code['xavier']))
+
 Y = ('[y](#f/byu)', '[y](#f/yale)')
 
 

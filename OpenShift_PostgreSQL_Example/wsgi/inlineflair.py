@@ -54,7 +54,7 @@ T = ('[t]%s' % (code['trine']), '[t](#f/tulane)', '[t]%s' % (code['tarletonstate
 
 U = ('[u]%s' % (code['union']), '[u]%s' % (code['urbana']), '[u]%s' % (code['staffordshire']))
 
-V = ('[v](#f/v)', '[u]%s' % (code['laurentian']))
+V = ('[v](#f/v)', '[v]%s' % (code['laurentian']))
 
 W = ('[w]%s' % (code['waseda']), '[w]%s' % (code['wilkes']), '[w](#f/washington)', '[w]%s' % (
     code['wartburg']), '[w](#f/wisconsin)', '[w]%s' % (code['waynesburg']))

@@ -6,10 +6,12 @@ import re
 # Can be run as-is with cron or another scheduler, or used with time.sleep() in
 # an infinite loop.
 
-# This SQLite example requires no setup but the update functionality will not
-# work with non-persistant and/or memory-based filesystems unless you flush the
-# cache each day. For automatic updates in all cases, use a non-local databsase.
-# (See the included Heroku and OpenShift PostgreSQL examples.)
+# To use the app with SQlite you must first run this file with python
+# (command "python updateflairs.py") to initialize the database.
+
+# This SQLite example requires no other setup but the update functionality will
+# not work with non-persistant and/or memory-based filesystems unless you flush
+# the cache each day.
 
 socket = urllib.urlopen("http://www.reddit.com/r/CFB/wiki/inlineflair/")
 
